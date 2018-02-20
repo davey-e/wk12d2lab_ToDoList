@@ -4,6 +4,7 @@ var init = function () {
 
   var todosArray = JSON.parse(localStorage.getItem('todoList')) || [];
   populate(todosArray);
+  populateDropDown();
 }
 
 var populate = function (todos) {
@@ -12,6 +13,17 @@ var populate = function (todos) {
   for (listItem of todos){
     addItem(listItem);
   }
+}
+
+const populateDropDown = function(){
+  const selectItem = document.getElementById('listOfLists');
+  for ( i=0;i < localStorage.length; i++){
+    const optionItem = document.createElement('option');
+    optionItem.innerText = localStorage.key(i);
+    selectItem.appendChild(optionItem);
+  }
+
+  console.log(localStorage.key);
 }
 
 var addItem = function (item) {
